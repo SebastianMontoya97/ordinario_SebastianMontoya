@@ -11,7 +11,7 @@ import javafx.util.Pair;
  *
  * @author Sebastian M.M
  */
-public class index {
+public class IbmControlller {
     /**
      * @param args the command line arguments
      */
