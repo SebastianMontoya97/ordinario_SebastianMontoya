@@ -43,19 +43,19 @@ public class Gerente implements Observer{
     public void update(String nombre, String tipo, String descripcion, double gasto, int hora) {
         System.out.println("Notificaciones para "+this.nombre+":");
         if(this.permiso=="Ambos"){
-            if(this.hora1<hora && hora<this.hora2){
+            if(this.hora1<=hora && hora<=this.hora2){
             MensajeCorreo correo = new MensajeCorreo();
             correo.notificacion(this.nombre, nombre, tipo, descripcion, gasto);
             MensajeCelular celular = new MensajeCelular();
             celular.notificacion(this.nombre, nombre, tipo, descripcion, gasto);
             }else{ }
         }else if(this.permiso=="Correo"){
-            if(this.hora1<hora && hora<this.hora2){
+            if(this.hora1<=hora && hora<=this.hora2){
             MensajeCorreo correo = new MensajeCorreo();
             correo.notificacion(this.nombre, nombre, tipo, descripcion, gasto);
             }else{}
         }else if(this.permiso=="Celular"){
-            if(this.hora1<hora && hora<this.hora2){
+            if(this.hora1<=hora && hora<=this.hora2){
                 MensajeCelular celular = new MensajeCelular();
             celular.notificacion(this.nombre, nombre, tipo, descripcion, gasto);}
             else{}

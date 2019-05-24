@@ -17,12 +17,15 @@ public class index {
      */
     public static void main(String[] args) {
         Hacienda nuevo = new Hacienda();
-        Ibm viejo = new Ibm();
+        Ibm viejo = new Ibm();//Introducimos todos los datos en el sistema de IBM
         viejo.agregarCliente("Alan Paredes");
         viejo.agregarCliente("Luis Oliva");
         viejo.agregarCliente("Juan Estevez");
-        SistemaNuevo adaptado = new SistemaAdapter(viejo);
+        SistemaNuevo adaptado = new SistemaAdapter(viejo);//Los pasamos y adaptamos al sistema
+        //nuevo que cumple con los estatutos de Hacienda y el framework de facturacion
+        //este nos regresa los datos ya listos para incorporar al nuevo sistema
         nuevo.setListaClientes(adaptado.getListaClientes());
-        nuevo.imprimirListaClientes();
+        //Introducimos datos a nuevo sistema
+        nuevo.imprimirListaClientes();//Nos los despliega desglosado en nombre y apellido
     }
 }

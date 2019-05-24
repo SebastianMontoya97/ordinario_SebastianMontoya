@@ -18,12 +18,16 @@ public class PersistenciaController {
         BaseCreator tipoA = new BaseACreator();
         BaseCreator tipoB = new BaseBCreator();
         BaseCreator tipoC = new BaseCCreator();
-        Sentencia sentencia1 = tipoA.createSentencia("A");
-        sentencia1.crearSentencia("select * from database;");
-        System.out.println(sentencia1.getSentencia());
-        Sentencia sentencia2= tipoB.createSentencia("B");
+        Sentencia sentencia1 = tipoA.createSentencia("A");//CREAMOS UNA SENTENCIA PARA UN BASE DE DATOS TIPO A QUE REQUIERE EL QUERY EN MAYUSCULAS
+        sentencia1.crearSentencia("select * from database;");//Introducimos QUERY
+        System.out.println(sentencia1.getSentencia());//IMPRIMIMOS QUERY ADAPTADO
+        //REPETIMOS
+        Sentencia sentencia2= tipoB.createSentencia("B");//CREAMOS UNA SENTENCIA PARA UN BASE DE DATOS TIPO B QUE REQUIERE EL QUERY EN MINUSCULAS
         sentencia2.crearSentencia("SELECT * from DATABASE;");
         System.out.println(sentencia2.getSentencia());
+        Sentencia sentencia3= tipoC.createSentencia("C");//CREAMOS UNA SENTENCIA PARA UN BASE DE DATOS TIPO C QUE EL QUERY SE ACEPTA TAL COMO ESTA
+        sentencia3.crearSentencia("SELECT * from DATAbase;");
+        System.out.println(sentencia3.getSentencia());
     }
     
 }

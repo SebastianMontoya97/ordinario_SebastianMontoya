@@ -18,15 +18,17 @@ public class SageController {
         Gerente gerente2 = new Gerente("Abigail Mendoza");
         //CLIENTES
         Cliente cliente1 = new Cliente("Avanti");
-        gerente1.setHoraLimite(10, 20);
+        gerente1.setHoraLimite(10, 20);//ESTABLECEMOS UNA HORA DONDE SE PERMITE RECIBIR MENSAJES
+        //SI NO SE ESTABLECE SE PUEDE RECIBIR NOTIFICACIONES A TODAS HORAS
         //ASIGNAMOS GERENTES A CLIENTES
         cliente1.addObserverToList(gerente1);
         cliente1.addObserverToList(gerente2);
-        //CREAMOS TRANSACCIONES, PRIMERO CLIENTE 1, LA CANTIDAD MAXIMA ES 1000
+        //CREAMOS TRANSACCIONES, PRIMERO CLIENTE 1, LA CANTIDAD MAXIMA ES 1000 POR DEFAULT
         cliente1.registrarCompra();
-        gerente1.setPermiso("Ninguno");
+        gerente1.setPermiso("Celular");
+        //PODEMOS CAMBIAR LA CANTIDAD MAXIMA A 2000 O MÁS
+        cliente1.setMaximoGasto(2000);
         cliente1.registrarCompra();
-        cliente1.imprimirLog();
     }
     
 }
