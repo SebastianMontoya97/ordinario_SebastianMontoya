@@ -14,8 +14,10 @@ import java.util.Scanner;
 public class Cliente implements Observable {
     Scanner scan = new Scanner(System.in);
     public String nombre;
+    public int hora;
     public ArrayList<Compra> compras = new ArrayList();
     public ArrayList<Observer> gerentes = new ArrayList();
+    public ArrayList<String> log = new ArrayList();
     public double cantidadMaxima=1000;
     
     public Cliente(String nombre){
@@ -33,8 +35,16 @@ public class Cliente implements Observable {
         System.out.println("Gasto de Compra:");
         movimiento.setGasto(scan.nextDouble());
         scan.nextLine();
+        System.out.println("Hora:");
+        hora=scan.nextInt();
+        scan.nextLine();
+        System.out.println("///////////////////////////");
+        for(int i=0;i<4;i++){
+            System.out.println("");
+            i++;
+        }
         if(movimiento.getGasto()>cantidadMaxima){
-            notifyObservers(this.nombre,movimiento.getTipo(),movimiento.getDescripcion(),movimiento.getGasto());
+            notifyObservers(this.nombre,movimiento.getTipo(),movimiento.getDescripcion(),movimiento.getGasto(),this.hora);
         }
         System.out.println("///////////////////////////");
         System.out.println("REGISTRO DE COMPRA NUEVA:");
@@ -60,10 +70,25 @@ public class Cliente implements Observable {
     }
 
     @Override
-    public void notifyObservers(String nombre, String tipo, String descripcion, double gasto) {
+    public void notifyObservers(String nombre, String tipo, String descripcion, double gasto, int tiempo) {
     for(int i=0;i<gerentes.size();i++){
-            gerentes.get(i).update(nombre, tipo, descripcion, gasto);
+            gerentes.get(i).update(nombre, tipo, descripcion, gasto, tiempo);
+            agregarNotificacionLog(nombre, tipo, nombre, tipo, descripcion, gasto);
         }
     }
+    public void agregarNotificacionLog(String gerente, String permiso,String nombre, String tipo, String descripcion, double gasto){
+        //AGARRA EL GERENTE, SU PERMISO Y EN BASE A ESO PONES QUE TIPO DE NOTIFICACIONES SE MANDARON Y LOS DATOS, EL NOMBRE Y TODO EL ROLLO.
+        //DIRECTO AL ARRAYLIST DE LOG.
+        String reporte = "Notificacion del cliente: "+nombre+", compra de tipo: "+tipo+", descripcion: "+descripcion+", gasto: "+gasto;
+        log.add(reporte);
+    }
     
+    public void imprimirLog(){
+        for(int i=0;i<log.size();i++){
+            System.out.println(log.get(i));
+        }
+    }
+    public void setMaximoGasto(double cantidadMaxima){
+        this.cantidadMaxima = cantidadMaxima;
+    }
 }

@@ -10,5 +10,5 @@ package com.mayab.desarrollo.sage;
  * @author Sebastian M.M
  */
 public interface Observer {
-    public void update(String nombre, String tipo, String descripcion, double gasto);
+    public void update(String nombre, String tipo, String descripcion, double gasto, int hora);
 }

@@ -9,20 +9,22 @@ package com.mayab.desarrollo.sage;
  *
  * @author Sebastian M.M
  */
-public class GerenteCompras implements Observer{
+public class Gerente implements Observer{
     public String nombre;
     public String permiso;
-    public GerenteCompras(String nombre){
+    public int hora1, hora2;
+    public Gerente(String nombre){
         this.nombre=nombre;
         this.permiso="Ambos";
-    }
-    public void alertarCorreo(){
-        System.out.println("Alerta para "+this.nombre+" alguien esta gastando de mas, correo");
+        this.hora1=0;
+        this.hora2=24;
     }
     
-    public void alertarCelular(){
-        System.out.println("Alerta para "+this.nombre+" alguien esta gastando de mas, celular");
+    public void setHoraLimite(int n1, int n2){
+        this.hora1=n1;
+        this.hora2=n2;
     }
+    
     public void setPermiso(String permiso){
         if(permiso=="Ambos"){
             this.permiso="Ambos";
@@ -30,26 +32,40 @@ public class GerenteCompras implements Observer{
             this.permiso="Correo";
         }else if(permiso=="Celular"){
             this.permiso="Celular";
+        }else if(permiso=="Ninguno"){
+            this.permiso="Ninguno";
         }else{
             System.out.println("El permiso "+permiso+" no existe");
         }
     }
     
     @Override
-    public void update(String nombre, String tipo, String descripcion, double gasto) {
+    public void update(String nombre, String tipo, String descripcion, double gasto, int hora) {
         System.out.println("Notificaciones para "+this.nombre+":");
         if(this.permiso=="Ambos"){
+            if(this.hora1<hora && hora<this.hora2){
             MensajeCorreo correo = new MensajeCorreo();
             correo.notificacion(this.nombre, nombre, tipo, descripcion, gasto);
             MensajeCelular celular = new MensajeCelular();
             celular.notificacion(this.nombre, nombre, tipo, descripcion, gasto);
+            }else{ }
         }else if(this.permiso=="Correo"){
+            if(this.hora1<hora && hora<this.hora2){
             MensajeCorreo correo = new MensajeCorreo();
             correo.notificacion(this.nombre, nombre, tipo, descripcion, gasto);
+            }else{}
         }else if(this.permiso=="Celular"){
-            MensajeCelular celular = new MensajeCelular();
-            celular.notificacion(this.nombre, nombre, tipo, descripcion, gasto);
-        }
+            if(this.hora1<hora && hora<this.hora2){
+                MensajeCelular celular = new MensajeCelular();
+            celular.notificacion(this.nombre, nombre, tipo, descripcion, gasto);}
+            else{}
+        }else if(this.permiso=="Ninguno"){}
+    }
+    public String getPermiso(){
+        return this.permiso;
+    }
+    public String getNombre(){
+        return this.nombre;
     }
     
 }

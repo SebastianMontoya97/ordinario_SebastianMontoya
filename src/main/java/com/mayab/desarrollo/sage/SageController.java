@@ -14,23 +14,19 @@ public class SageController {
      */
     public static void main(String[] args) {
         //GERENTES
-        GerenteCompras gerente1 = new GerenteCompras("Luis Sandoval");
-        GerenteCompras gerente2 = new GerenteCompras("Chris Santos");
-        GerenteCompras gerente3 = new GerenteCompras("Veronica Castillo");
+        Gerente gerente1 = new Gerente("Luis Sandoval");
+        Gerente gerente2 = new Gerente("Abigail Mendoza");
         //CLIENTES
         Cliente cliente1 = new Cliente("Avanti");
-        Cliente cliente2 = new Cliente("Rima");
-        Cliente cliente3 = new Cliente("Intra");
+        gerente1.setHoraLimite(10, 20);
         //ASIGNAMOS GERENTES A CLIENTES
         cliente1.addObserverToList(gerente1);
         cliente1.addObserverToList(gerente2);
-        cliente2.addObserverToList(gerente2);
-        cliente3.addObserverToList(gerente1);
-        cliente3.addObserverToList(gerente3);
         //CREAMOS TRANSACCIONES, PRIMERO CLIENTE 1, LA CANTIDAD MAXIMA ES 1000
         cliente1.registrarCompra();
-        gerente1.setPermiso("Correo");
+        gerente1.setPermiso("Ninguno");
         cliente1.registrarCompra();
+        cliente1.imprimirLog();
     }
     
 }

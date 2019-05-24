@@ -12,5 +12,5 @@ package com.mayab.desarrollo.sage;
 public interface Observable {
     public void addObserverToList(Observer p);
     public void deleteObserverFromList(Observer p);
-    public void notifyObservers(String nombre, String tipo, String descripcion, double gasto);
+    public void notifyObservers(String nombre, String tipo, String descripcion, double gasto, int tiempo);
 }
